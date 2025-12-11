@@ -59,8 +59,10 @@ function resetGame() {
     battleHistory = [];
 
     // Reset score display
-    playerScore.textContent = 'User: 0';
-    rivalScore.textContent = 'Computer: 0';
+    playerScore.textContent = 'User';
+    rivalScore.textContent = 'Computer';
+    playerScore.setAttribute('data-score', '0');
+    rivalScore.setAttribute('data-score', '0');
 
     // Clear selections
     userSelectionDisplay.textContent = '';
@@ -118,8 +120,23 @@ function playRound(userChoice, computerChoice) {
 }
 
 function updateScores() {
-    playerScore.textContent = `User: ${userScore}`;
-    rivalScore.textContent = `Computer: ${computerScore}`;
+    // Update text
+    playerScore.textContent = `User`;
+    rivalScore.textContent = `Computer`;
+
+    // Update data attributes for ::after display
+    playerScore.setAttribute('data-score', userScore);
+    rivalScore.setAttribute('data-score', computerScore);
+
+    // Add pulse animation
+    playerScore.classList.add('pulse');
+    rivalScore.classList.add('pulse');
+
+    // Remove pulse class after animation
+    setTimeout(() => {
+        playerScore.classList.remove('pulse');
+        rivalScore.classList.remove('pulse');
+    }, 500);
 }
 
 function endGame() {
@@ -184,3 +201,31 @@ function addBattleToHistory(round, userChoice, computerChoice, result) {
     // Store in history array
     battleHistory.push({ round, userChoice, computerChoice, result });
 }
+
+// ===== ANTIGRAVITY PARALLAX EFFECT =====
+// Mouse-based parallax movement for buttons
+let mouseX = 0;
+let mouseY = 0;
+
+document.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX / window.innerWidth - 0.5;
+    mouseY = e.clientY / window.innerHeight - 0.5;
+});
+
+function applyParallax() {
+    btn.forEach((button, index) => {
+        // Different movement speed for each button
+        const speedMultiplier = (index + 1) * 5;
+        const moveX = mouseX * speedMultiplier;
+        const moveY = mouseY * speedMultiplier;
+
+        // Apply parallax transform (doesn't interfere with floating animation)
+        button.style.setProperty('--parallax-x', `${moveX}px`);
+        button.style.setProperty('--parallax-y', `${moveY}px`);
+    });
+
+    requestAnimationFrame(applyParallax);
+}
+
+// Start parallax animation loop
+applyParallax();
