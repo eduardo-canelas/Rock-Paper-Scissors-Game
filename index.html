@@ -3,10 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script src="index.js"></script>
+    <title>🪨 | 📄 | ✂️</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🪨</text></svg>">
+    <link rel="stylesheet" href="index.css">
+    <script src="index.js" defer></script>
 </head>
 <body>
+    <section class = "containerTitle" id="containerTitle">
+        <h1 class="title" id="emojis">🪨 | 📄 | ✂️</h1>
+    </section>
     
+    <div class="mainContainer">
+        <section class = "containerGameplay" id="containerGameplay">
+            <div class="containerScore" id="containerScore">
+                <h1 class = "roundTitle" id="roundTitle"></h1>
+                <h1 class="title" id="title">Score</h1>
+                <p class="userScore" id="userScore">User: 0</p>
+                <p class="computerScore" id="computerScore">Computer: 0</p>
+            </div>
+            <div class = "containerSelections" id="containerSelections">
+                <h1 class="title" id="title">User selection</h1>
+                <p class="userSelection" id="userSelection"></p>
+                <h1 class="title" id="title">Computer selection</h1>
+                <p class="computerSelection" id="computerSelection"></p>
+            </div>
+            <h1 class="title" id="title">Choose your move</h1>
+            <div class="containerButtons" id="containerButtons">
+                <button class="button" id="rock">🪨</button>
+                <button class="button" id="paper">📄</button>
+                <button class="button" id="scissors">✂️</button>
+            </div>
+        </section>
+        
+        <div class="rightPanel">
+            <section class = "containerBattleHistory" id="containerBattleHistory">
+                <h1 class="title">Battle History</h1>
+                <div class="battleHistoryList" id="battleHistoryList">
+                    <p class="emptyState">Start playing to see battle history</p>
+                </div>
+                <p class="result" id="result"></p>
+            </section>
+            <button class="replayButton" id="replayButton">Play Again</button>
+        </div>
+    </div>
 </body>
 </html>
